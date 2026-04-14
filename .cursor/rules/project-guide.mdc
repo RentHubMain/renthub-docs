@@ -28,6 +28,8 @@ docs/
   project-mgmt/      # 项目管理方法（分支策略、发布流程、Code Review）
   knowledge/         # 开发所需知识（云开发、小程序、TypeScript 等）
   <future-topic>/    # 新板块按需在此层级新增
+assets/
+  images/            # 文档中引用的图片（banner、截图、示意图等）
 ```
 
 - 每个板块下用 `README.md` 作为入口索引

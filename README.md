@@ -1,5 +1,7 @@
 # RentHub 开发者指南
 
+![RentHub Banner](./assets/images/renthub-banner.png)
+
 本仓库是 **RentHub（租汇）** 面向开发者的 **文档站**：以 Markdown 为主，帮助团队快速了解项目、上手开发与统一协作方式。**不包含可运行的业务代码**；具体说明与专题正文放在 `docs/` 下（随撰写进度补充）。
 
 ## RentHub 简介
