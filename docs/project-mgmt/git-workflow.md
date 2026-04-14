@@ -85,13 +85,16 @@ feat(order): 支持订单分页查询
 
 ### 2.2 让 AI 帮你写 commit message（推荐）
 
-写好一条 commit message 需要思考，但 AI 可以承担大部分起草工作。
+写好一条 commit message 需要思考，但 AI 可以承担大部分起草工作。本仓库已内置 `renthub-commit` skill，封装了完整的提交流程。
 
-**推荐流程：**
+**使用方式：**
 
-1. 完成一个阶段的改动后，在 Cursor Composer 中 `@` 本文件（`git-workflow.md`）
-2. 说："根据文件里的 commit 规范，分析当前 git 改动，帮我生成 commit message，并直接执行提交"
-3. AI 会读取 `git diff`、理解改动内容、对照规范起草 message，并在你确认后执行 `git commit`
+在 Cursor Composer 中输入 `/renthub-commit`，skill 会自动：
+
+1. 读取 `git status` 与 `git diff` 分析当前改动
+2. 判断是否需要拆分为多个 commit
+3. 按规范起草 `type(scope): subject` + body
+4. 展示给你确认，确认后执行 `git commit`
 
 整个过程不需要手动打一行命令。
 
