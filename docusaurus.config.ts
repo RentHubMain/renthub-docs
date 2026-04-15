@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'RentHub 团队开发者参考手册',
   favicon: 'images/icon.png',
 
-  url: 'https://docs.renthub.cloud',
+  url: 'https://renthubmain.github.io',
   baseUrl: '/',
 
   organizationName: 'RentHubMain',
