@@ -1,4 +1,4 @@
-import React, {type ReactNode, useState} from 'react';
+import React, {type ReactNode} from 'react';
 import {useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
 import BackToTopButton from '@theme/BackToTopButton';
 import DocRootLayoutSidebar from '@theme/DocRoot/Layout/Sidebar';
@@ -9,7 +9,6 @@ import styles from './styles.module.css';
 
 export default function DocRootLayout({children}: Props): ReactNode {
   const sidebar = useDocsSidebar();
-  const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
   return (
     <div className={styles.docsWrapper}>
       <BackToTopButton />
@@ -17,11 +16,11 @@ export default function DocRootLayout({children}: Props): ReactNode {
         {sidebar && (
           <DocRootLayoutSidebar
             sidebar={sidebar.items}
-            hiddenSidebarContainer={hiddenSidebarContainer}
-            setHiddenSidebarContainer={setHiddenSidebarContainer}
+            hiddenSidebarContainer={false}
+            setHiddenSidebarContainer={() => {}}
           />
         )}
-        <DocRootLayoutMain hiddenSidebarContainer={hiddenSidebarContainer}>
+        <DocRootLayoutMain hiddenSidebarContainer={false}>
           {children}
         </DocRootLayoutMain>
       </div>

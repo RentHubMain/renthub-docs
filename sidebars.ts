@@ -20,6 +20,16 @@ const sidebars: SidebarsConfig = {
         'project-mgmt/git-workflow',
       ],
     },
+    {
+      type: 'category',
+      label: '界面设计',
+      link: { type: 'doc', id: 'ui-design/index' },
+      items: [
+        'ui-design/mini-program',
+        'ui-design/website',
+        'ui-design/admin-panel',
+      ],
+    },
   ],
 };
 

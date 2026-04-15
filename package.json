@@ -36,6 +36,9 @@
     "node": ">=18.0"
   },
   "overrides": {
-    "webpack": "5.95.0"
+    "webpack": "5.95.0",
+    "@docsearch/react": "^3",
+    "@docsearch/css": "^3",
+    "@docsearch/js": "^3"
   }
 }

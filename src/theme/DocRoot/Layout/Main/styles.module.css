@@ -10,12 +10,6 @@
   }
 
   .docMainContainerEnhanced {
-    max-width: calc(100% - var(--doc-sidebar-hidden-width));
-  }
-
-  .docItemWrapperEnhanced {
-    max-width: calc(
-      var(--ifm-container-width) + var(--doc-sidebar-width)
-    ) !important;
+    max-width: 100%;
   }
 }

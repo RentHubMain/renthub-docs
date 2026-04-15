@@ -51,11 +51,17 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-/* 右侧链接与主题切换之间留白 */
+/* 右侧所有元素统一间距 */
 .navbar__items--right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+/* 搜索框固定最右，取消 auto margin 保持间距一致 */
+.navbar__items--right [class*='navbarSearchContainer'] {
+  order: 99;
+  padding: 0 !important;
 }
 
 /* 右侧所有导航项加胶囊包裹 */
@@ -121,9 +127,10 @@
   justify-content: center;
   border: 2px solid var(--ifm-color-emphasis-300);
   border-radius: 9999px;
-  padding: 0.25rem 0.55rem;
+  padding: 0;
   background: transparent;
   transition: border-color 0.15s, background 0.15s;
+  overflow: hidden;
 }
 
 .navbar__items--right [class*='colorModeToggle']:hover,
@@ -133,23 +140,22 @@
 }
 
 .navbar__items--right [class*='colorModeToggle'] button {
-  padding: 0.15rem !important;
-  margin: 0;
-  border: none !important;
-  background: transparent !important;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.3rem 0.55rem !important;
+  margin: 0;
+  border: none !important;
+  background: transparent !important;
   line-height: 0;
-  overflow: visible;
   min-width: unset;
 }
 
-/* 主题图标尺寸（略大于默认 24px，避免胶囊内被压扁） */
+/* 主题图标尺寸（不覆盖 display，由组件自身的 data-theme-choice 控制显隐） */
 .navbar__items--right [class*='colorModeToggle'] svg {
-  width: 1.5rem !important;
-  height: 1.5rem !important;
-  min-width: 1.5rem;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  min-width: 1.1rem;
   flex-shrink: 0;
 }
 

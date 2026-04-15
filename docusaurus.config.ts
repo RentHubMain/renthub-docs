@@ -41,6 +41,18 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          lastmod: 'date',
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+          createSitemapItems: async (params) => {
+            const { defaultCreateSitemapItems, ...rest } = params;
+            const items = await defaultCreateSitemapItems(rest);
+            return items.filter((item) => !item.url.includes('/page/'));
+          },
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -70,6 +82,10 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          type: 'search',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -83,14 +99,22 @@ const config: Config = {
     },
     docs: {
       sidebar: {
-        hideable: true,
-        autoCollapseCategories: true,
+        hideable: false,
+        autoCollapseCategories: false,
       },
     },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
       respectPrefersColorScheme: false,
+    },
+    algolia: {
+      appId: 'Q3UHSQWKBU',
+      apiKey: '7f4e555dbe98878ba653ec0eb92b5a58',
+      indexName: 'RentHub Docs',
+      contextualSearch: true,
+      searchParameters: {},
+      searchPagePath: false,
     },
   } satisfies Preset.ThemeConfig,
 };

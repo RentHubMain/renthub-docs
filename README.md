@@ -42,6 +42,7 @@ RentHub 是基于微信小程序的租赁市场平台（信息发布、浏览、
 |------|------|------|
 | [氛围编程 Vibe Coding](./docs/vibe-coding/index.md) | AI 辅助开发的约定与注意点 | 进行中 |
 | [项目管理](./docs/project-mgmt/index.md) | 分支、发布、Code Review 等 | 进行中 |
+| [界面设计](./docs/ui-design/index.md) | 拟物化设计系统、三端 UI 规范 | 进行中 |
 | 项目综述 | 架构、技术选型、模块关系 | 待撰写 |
 | 开发注意事项 | 环境、调试、常见问题 | 待撰写 |
 | 开发知识 | 云开发、小程序、TypeScript 等 | 待撰写 |

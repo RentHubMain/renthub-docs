@@ -46,6 +46,12 @@ const categories = [
     desc: 'Git 基础、Conventional Commits、AI 时代的协作纪律。个人项目同样适用。',
     to: '/docs/project-mgmt/',
   },
+  {
+    tag: '界面设计',
+    title: 'UI 设计准则',
+    desc: '拟物化设计系统、60-30-10 色彩规则、组件规范。覆盖小程序、官网与管理后台三端。',
+    to: '/docs/ui-design/',
+  },
 ];
 
 const HomepageHero: FC = () => {

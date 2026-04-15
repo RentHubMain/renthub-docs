@@ -6,7 +6,6 @@ import type {Props} from '@theme/DocRoot/Layout/Main';
 import styles from './styles.module.css';
 
 export default function DocRootLayoutMain({
-  hiddenSidebarContainer,
   children,
 }: Props): ReactNode {
   const sidebar = useDocsSidebar();
@@ -14,14 +13,9 @@ export default function DocRootLayoutMain({
     <main
       className={clsx(
         styles.docMainContainer,
-        (hiddenSidebarContainer || !sidebar) && styles.docMainContainerEnhanced,
+        !sidebar && styles.docMainContainerEnhanced,
       )}>
-      <div
-        className={clsx(
-          'container padding-top--md padding-bottom--lg',
-          styles.docItemWrapper,
-          hiddenSidebarContainer && styles.docItemWrapperEnhanced,
-        )}>
+      <div className={clsx('container padding-top--md padding-bottom--lg', styles.docItemWrapper)}>
         {children}
       </div>
     </main>
