@@ -41,9 +41,9 @@ RentHub 是基于微信小程序的租赁市场平台（信息发布、浏览、
 | 板块 | 内容 | 状态 |
 |------|------|------|
 | [氛围编程 Vibe Coding](./docs/vibe-coding/index.md) | AI 辅助开发的约定与注意点 | 进行中 |
-| [项目管理](./docs/project-mgmt/index.md) | 分支、发布、Code Review 等 | 进行中 |
+| [项目管理](./docs/project-mgmt/index.md) | 分支、Code Review、文档站与业务仓 CI 工作流等 | 进行中 |
 | [界面设计](./docs/ui-design/index.md) | 拟物化设计系统、三端 UI 规范 | 进行中 |
-| [开发知识](./docs/dev-knowledge/index.md) | CloudBase 云开发核心能力入门 | 进行中 |
+| [开发知识](./docs/dev-knowledge/index.md) | 微信小程序开发体系、CloudBase、JavaScript ES6+等 | 进行中 |
 | 项目综述 | 架构、技术选型、模块关系 | 待撰写 |
 | 开发注意事项 | 环境、调试、常见问题 | 待撰写 |
 
@@ -51,14 +51,18 @@ RentHub 是基于微信小程序的租赁市场平台（信息发布、浏览、
 
 ## 零基础新手？从这里开始
 
-如果你刚接触开发，建议按以下顺序阅读：
+如果你刚接触开发，建议按以下顺序阅读（与站点首页「新手路线」一致）：
 
-1. **[Git 基础入门](./docs/project-mgmt/git-basics.md)** — 理解版本控制、分支、提交与 PR，是参与任何项目的前提
-2. **[Cursor 使用指南](./docs/vibe-coding/cursor-guide.md)** — 了解如何用 AI 辅助开发，模型怎么选、额度怎么省
-3. **[Cursor 核心概念](./docs/vibe-coding/cursor-concepts.md)** — 深入理解 Rules、Skills、MCP 等机制，让 AI 真正为你所用
-4. **[Git 协作工作流](./docs/project-mgmt/git-workflow.md)** — 掌握团队协作规范，包括分支策略、Commit 写法与 PR 流程
+1. **[Cursor 使用指南](./docs/vibe-coding/cursor-guide.md)** — AI 辅助开发与额度
+2. **[Cursor 核心概念](./docs/vibe-coding/cursor-concepts.md)** — Rules、Skills、MCP
+3. **[Git 基础入门](./docs/project-mgmt/git-basics.md)** — 版本控制与工作区
+4. **[Git 协作工作流](./docs/project-mgmt/git-workflow.md)** — 分支、Commit、PR、GitHub Projects
+5. **[GitHub Actions 工作流](./docs/project-mgmt/github-actions.md)** — CI/CD 与文档站部署示例
+6. **[RentHub 业务仓库开发工作流](./docs/project-mgmt/renthub-dev-workflow.md)** — Monorepo、测试、Sonar、业务仓 CI
+7. **[微信小程序开发体系](./docs/dev-knowledge/wechat-mini-program.md)** — 工具链与提审发布
+8. **[腾讯云 CloudBase 入门](./docs/dev-knowledge/cloudbase.md)** — 云数据库与云函数
 
-熟悉以上内容后，再按需阅读其他板块。
+熟悉以上内容后，再按需阅读 [界面设计](./docs/ui-design/index.md)、[JavaScript ES6+](./docs/dev-knowledge/js-es6.md)（非必）等其余文档。
 
 ## 不只适用于 RentHub
 

@@ -9,7 +9,9 @@ title: 项目管理
 | 文件 | 内容 |
 |------|------|
 | [Git 基础入门](/docs/project-mgmt/git-basics) | 零基础理解版本控制、分支、提交与远程操作 |
-| [Git 协作工作流](/docs/project-mgmt/git-workflow) | 现代 IDE + AI 环境下的分支、提交与 Review 最佳实践 |
+| [Git 团队协作](/docs/project-mgmt/git-workflow) | 现代 IDE + AI 环境下的分支、提交与 Review 最佳实践 |
+| [GitHub Actions 工作流](/docs/project-mgmt/github-actions) | CI/CD 核心概念与文档站部署工作流逐段详解 |
+| [RentHub 业务仓库开发工作流](/docs/project-mgmt/renthub-dev-workflow) | 小程序 + 云函数 Monorepo 目录约定、测试命令、Sonar、`Build` CI 与端到端发布链路 |
 
 ## 核心原则
 

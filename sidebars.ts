@@ -18,6 +18,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'project-mgmt/git-basics',
         'project-mgmt/git-workflow',
+        'project-mgmt/github-actions',
+        'project-mgmt/renthub-dev-workflow',
       ],
     },
     {
@@ -35,7 +37,9 @@ const sidebars: SidebarsConfig = {
       label: '开发知识',
       link: { type: 'doc', id: 'dev-knowledge/index' },
       items: [
+        'dev-knowledge/wechat-mini-program',
         'dev-knowledge/cloudbase',
+        'dev-knowledge/js-es6',
       ],
     },
   ],

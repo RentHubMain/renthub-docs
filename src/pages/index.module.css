@@ -159,6 +159,24 @@
   margin: 0;
 }
 
+.quickStartFoot {
+  margin: 1.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.quickStartFoot a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.quickStartFoot a:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
 /* ── Timeline ── */
 .timeline {
   list-style: none;

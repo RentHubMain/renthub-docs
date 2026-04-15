@@ -9,27 +9,51 @@ import styles from './index.module.css';
 const steps = [
   {
     num: '01',
-    title: 'Git 基础入门',
-    desc: '理解版本控制、分支、提交与 PR，是参与任何项目的前提',
-    to: '/docs/project-mgmt/git-basics',
-  },
-  {
-    num: '02',
     title: 'Cursor 使用指南',
-    desc: '了解如何用 AI 辅助开发，模型怎么选、额度怎么省',
+    desc: '如何用 AI 辅助开发：模型怎么选、额度怎么省',
     to: '/docs/vibe-coding/cursor-guide',
   },
   {
-    num: '03',
+    num: '02',
     title: 'Cursor 核心概念',
-    desc: '深入理解 Rules、Skills、MCP 等机制，让 AI 真正为你所用',
+    desc: 'Rules、Skills、MCP 等机制，让 AI 按团队规范工作',
     to: '/docs/vibe-coding/cursor-concepts',
+  },
+  {
+    num: '03',
+    title: 'Git 基础入门',
+    desc: '理解版本控制、工作区与分支，是参与任何项目的前提',
+    to: '/docs/project-mgmt/git-basics',
   },
   {
     num: '04',
     title: 'Git 协作工作流',
-    desc: '掌握团队协作规范，包括分支策略、Commit 写法与 PR 流程',
+    desc: '分支策略、Conventional Commits、PR / Review、GitHub Projects 关联',
     to: '/docs/project-mgmt/git-workflow',
+  },
+  {
+    num: '05',
+    title: 'GitHub Actions 工作流',
+    desc: '读懂 CI/CD 概念与文档站部署示例，再看业务仓流水线更容易',
+    to: '/docs/project-mgmt/github-actions',
+  },
+  {
+    num: '06',
+    title: 'RentHub 业务仓库开发工作流',
+    desc: 'Monorepo 目录、Jest / 覆盖率、Sonar、`Build` 流水线与发布链路',
+    to: '/docs/project-mgmt/renthub-dev-workflow',
+  },
+  {
+    num: '07',
+    title: '微信小程序开发体系',
+    desc: '开发者工具、导入项目、上传体验版 / 提审与类目注意点',
+    to: '/docs/dev-knowledge/wechat-mini-program',
+  },
+  {
+    num: '08',
+    title: '腾讯云 CloudBase 入门',
+    desc: '数据库、云函数分层与调用方式，对应小程序 `wx.cloud`',
+    to: '/docs/dev-knowledge/cloudbase',
   },
 ];
 
@@ -55,7 +79,7 @@ const categories = [
   {
     tag: '开发知识',
     title: '云开发技术栈',
-    desc: '腾讯云 CloudBase 核心能力入门：文档型数据库、云函数、云托管、云存储与身份验证。',
+    desc: '微信小程序体系、CloudBase、JavaScript ES6+ 等，与业务仓库技术栈对齐。',
     to: '/docs/dev-knowledge/',
   },
 ];
@@ -115,7 +139,9 @@ const QuickStart: FC = () => (
       <div className={styles.sectionHeader}>
         <span className={styles.sectionLabel}>新手路线</span>
         <h2 className={styles.sectionTitle}>从这里开始</h2>
-        <p className={styles.sectionSub}>按顺序读完这四篇，你就能流畅参与团队开发</p>
+        <p className={styles.sectionSub}>
+          建议按序阅读：先用 Cursor 建立 AI 协作习惯，再读 Git 基础与团队工作流；随后是 CI、RentHub 业务仓流程，以及微信与 CloudBase。完整目录见侧栏与各板块首页。
+        </p>
       </div>
       <ol className={styles.timeline}>
         {steps.map((s) => (
@@ -133,6 +159,16 @@ const QuickStart: FC = () => (
           </li>
         ))}
       </ol>
+      <p className={styles.quickStartFoot}>
+        做界面与视觉规范时另读{' '}
+        <Link to="/docs/ui-design/">界面设计</Link>
+        {' '}；需要巩固现代 JS 时可读{' '}
+        <Link to="/docs/dev-knowledge/js-es6">JavaScript ES6+</Link>
+        {' '}；项目管理其余文档见{' '}
+        <Link to="/docs/project-mgmt/">板块索引</Link>
+        {' '}，开发知识见{' '}
+        <Link to="/docs/dev-knowledge/">开发知识</Link>。
+      </p>
     </div>
   </section>
 );
