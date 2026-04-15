@@ -12,15 +12,15 @@ RentHub 是基于微信小程序的租赁市场平台，连接出租方与承租
 
 ## 文档目录
 
-文档按 **目录 = 板块** 组织；每块用 `README.md` 作入口索引，子话题为独立的 `kebab-case.md` 文件。
+文档按 **目录 = 板块** 组织；每块用 `index.md` 作入口索引，子话题为独立的 `kebab-case.md` 文件。
 
-| 板块（点击跳转到相应模块） | 内容 | 状态 |
+| 板块 | 内容 | 状态 |
 |------|------|------|
-| [项目综述](./docs/overview/README.md) | 架构、技术选型、模块关系 | 待撰写 |
-| [开发注意事项](./docs/dev-notes/README.md) | 环境、调试、常见问题 | 待撰写 |
-| [氛围编程 Vibe Coding](./docs/vibe-coding/README.md) | AI 辅助开发的约定与注意点 | 进行中 |
-| [项目管理](./docs/project-mgmt/README.md) | 分支、发布、Code Review 等 | 进行中 |
-| [开发知识](./docs/knowledge/README.md) | 云开发、小程序、TypeScript 等 | 待撰写 |
+| [氛围编程 Vibe Coding](./docs/vibe-coding/index.md) | AI 辅助开发的约定与注意点 | 进行中 |
+| [项目管理](./docs/project-mgmt/index.md) | 分支、发布、Code Review 等 | 进行中 |
+| 项目综述 | 架构、技术选型、模块关系 | 待撰写 |
+| 开发注意事项 | 环境、调试、常见问题 | 待撰写 |
+| 开发知识 | 云开发、小程序、TypeScript 等 | 待撰写 |
 
 后续若有新主题，在 `docs/` 下新增同级目录并将本表同步更新，保持入口一致。
 
@@ -44,22 +44,22 @@ RentHub 是基于微信小程序的租赁市场平台，连接出租方与承租
 
 如果你是独立开发者或在其他团队，可以直接借鉴这些经验，按自己的项目情况调整使用。
 
-## GitHub Pages
-
-本仓库使用 [Jekyll](https://jekyllrb.com/) 生成静态站点，并通过 [GitHub Actions 工作流](./.github/workflows/deploy-pages.yml) 部署到 GitHub Pages。
-
-1. 在 GitHub 打开本仓库的 **Settings → Pages**。
-2. 在 **Build and deployment** 中，将 **Source** 设为 **GitHub Actions**（不要选 “Deploy from a branch”）。
-3. 向 **`main`** 或 **`master`** 分支推送后，工作流会自动构建并发布；部署完成后，同一页面会显示访问地址，一般为 `https://<用户名或组织名>.github.io/<仓库名>/`。
-
-**本地预览**（可选）：
+## 本地开发
 
 ```bash
-bundle install
-bundle exec jekyll serve
+npm install          # 首次安装，或依赖变更后
+npm start            # 开发服务器，默认 http://localhost:3000/renthub-developer-guide/
+npm run build        # 生产构建，产物在 build/
+npm run serve        # 本地预览构建产物
 ```
 
-浏览器访问 `http://localhost:4000/renthub-developer-guide/` 即可预览。
+## GitHub Pages 部署
+
+本仓库使用 [Docusaurus 3](https://docusaurus.io/) 生成静态站点，并通过 [GitHub Actions 工作流](./.github/workflows/deploy-pages.yml) 自动部署到 GitHub Pages。
+
+1. 在 GitHub 打开本仓库的 **Settings → Pages**。
+2. 在 **Build and deployment** 中，将 **Source** 设为 **GitHub Actions**（不要选 "Deploy from a branch"）。
+3. 向 **`main`** 或 **`master`** 分支推送后，工作流会自动构建并发布；部署完成后，同一页面会显示访问地址，一般为 `https://<用户名或组织名>.github.io/<仓库名>/`。
 
 ---
 

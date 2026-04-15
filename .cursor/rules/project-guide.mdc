@@ -174,6 +174,7 @@ Docusaurus 自动在每篇文档顶部生成面包屑导航，无需手动添加
   1. `src/pages/index.tsx` 首页板块卡片
   2. `sidebars.ts` 侧边栏
   3. `docusaurus.config.ts` navbar items（如需要）
+  4. `README.md` 根目录文档目录表（板块状态一并更新）
 - 不修改现有板块的目录名（避免破坏已有链接）
 - 公共术语、缩写说明统一维护在 `docs/knowledge/glossary.md`
 
@@ -181,7 +182,9 @@ Docusaurus 自动在每篇文档顶部生成面包屑导航，无需手动添加
 
 ```bash
 npm install        # 安装依赖（首次或依赖变更后）
-npm start          # 启动开发服务器，默认 http://localhost:3000
+npm start          # 启动开发服务器，默认 http://localhost:3000/renthub-developer-guide/
 npm run build      # 生产构建，产物在 build/
 npm run serve      # 本地预览构建产物
 ```
+
+**注意**：`package.json` 中通过 `overrides` 将 `webpack` 固定在 `5.95.0`，原因是 `webpackbar@6` 与 webpack 5.96+ 存在 ProgressPlugin API 不兼容问题（Node 24 环境下复现）。升级 webpack 前须确认 `webpackbar` 已修复该问题。
