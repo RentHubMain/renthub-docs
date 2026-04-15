@@ -1,4 +1,4 @@
-# 将 Jekyll 站点部署到 GitHub Pages（需仓库 Settings → Pages → Build: GitHub Actions）
+# 将 Docusaurus 站点部署到 GitHub Pages（需仓库 Settings → Pages → Build: GitHub Actions）
 name: Deploy GitHub Pages
 
 on:
@@ -21,23 +21,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/setup-node@v4
         with:
-          ruby-version: "3.3"
-          bundler-cache: true
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
       - name: Build site
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: npm run build
         env:
-          JEKYLL_ENV: production
+          NODE_ENV: production
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: build
 
   deploy:
     needs: build

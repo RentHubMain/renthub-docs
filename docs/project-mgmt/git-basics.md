@@ -2,8 +2,6 @@
 title: Git 基础入门
 ---
 
-[← 返回项目管理板块]({{ '/docs/project-mgmt/' | relative_url }}) · [← 返回文档首页]({{ '/' | relative_url }})
-
 本文从"Git 是什么"开始，帮你建立完整的心智模型，并掌握日常开发所需的基本操作。
 
 ---
@@ -107,7 +105,7 @@ feature/login  →  push  →  feature/login
 
 PR 的价值不只是合并代码，更是一个**异步讨论和质量把关**的场所。每一次合并都有记录，出问题可以追溯到具体的 PR 和讨论。
 
-> 关于 PR 的写法规范和 Review 流程，见 [Git 协作工作流]({{ '/docs/project-mgmt/git-workflow/' | relative_url }})。
+> 关于 PR 的写法规范和 Review 流程，见 [Git 协作工作流](/docs/project-mgmt/git-workflow)。
 
 ---
 
@@ -219,7 +217,7 @@ git branch -a
 git checkout -b feature/my-feature
 ```
 
-命名规范参考 [Git 协作工作流]({{ '/docs/project-mgmt/git-workflow/' | relative_url }}) 中的分支策略。
+命名规范参考 [Git 协作工作流](/docs/project-mgmt/git-workflow) 中的分支策略。
 
 ### 5.3 切换分支
 
@@ -388,7 +386,7 @@ git stash pop      # 还原改动
 
 ## 11. 与团队工作流衔接
 
-掌握本文内容后，阅读 [Git 协作工作流]({{ '/docs/project-mgmt/git-workflow/' | relative_url }}) 了解 RentHub 团队具体的分支策略、Commit 规范与 PR 流程。
+掌握本文内容后，阅读 [Git 协作工作流](/docs/project-mgmt/git-workflow) 了解 RentHub 团队具体的分支策略、Commit 规范与 PR 流程。
 
 **快速回顾：日常开发最常用的命令**
 

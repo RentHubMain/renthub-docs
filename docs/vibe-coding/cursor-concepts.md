@@ -2,8 +2,6 @@
 title: Cursor 核心概念指南
 ---
 
-[← 返回 Vibe Coding 板块]({{ '/docs/vibe-coding/' | relative_url }}) · [← 返回文档首页]({{ '/' | relative_url }})
-
 本文覆盖 Cursor 的五个核心扩展机制：Rules、Skills、Commands、Subagents、MCP。理解它们的边界，能让你花最少的配置精力获得最大的 AI 协作效率。
 
 ---

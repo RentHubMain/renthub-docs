@@ -2,8 +2,6 @@
 title: Git 协作工作流
 ---
 
-[← 返回项目管理板块]({{ '/docs/project-mgmt/' | relative_url }}) · [← 返回文档首页]({{ '/' | relative_url }})
-
 AI 辅助开发改变了代码产出的速度，但没有改变协作的根本逻辑：**让每一次改动都可追溯、可回滚、可理解**。本文结合现代 IDE（Cursor）与 AI 的使用场景，讲解 RentHub 团队的 Git 实践。
 
 ---

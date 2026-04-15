@@ -2,8 +2,6 @@
 title: Cursor 使用指南
 ---
 
-[← 返回 Vibe Coding 板块]({{ '/docs/vibe-coding/' | relative_url }}) · [← 返回文档首页]({{ '/' | relative_url }})
-
 ## 1. 账号获取
 
 Cursor Pro 账号直接在 **淘宝**购买，备注需要发票，店家通常可提供电子发票（个人/企业均可，建议购买前确认）。

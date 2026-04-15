@@ -1,7 +1,13 @@
+# Docusaurus
+node_modules/
+build/
+.docusaurus/
+.cache-loader/
+
+# Jekyll (legacy)
 _site/
-.sass-cache/
 .jekyll-cache/
-.jekyll-metadata
-vendor/
-Gemfile.lock
+
+# Misc
 __pycache__/
+.DS_Store
