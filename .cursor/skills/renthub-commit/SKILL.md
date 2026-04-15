@@ -51,6 +51,7 @@ git diff            # 未暂存的改动
 - `subject`：动词开头，中文，不加句号，不超过 50 字
 - `scope`：填改动所属模块（如 `order`、`auth`、`vibe-coding`），无明确模块可省略
 - `body`：若改动有明确的背景原因，补充一段。**写"为什么"，不写"做了什么"**；若原因显而易见可省略
+- **禁止**在 subject/body 中出现工具归因文案，例如 `Made with Cursor`、`Co-authored-by: Cursor`、类似 AI 署名等；commit只描述项目改动本身
 
 ### 第四步：展示并确认
 
