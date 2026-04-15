@@ -52,7 +52,7 @@ const HomepageHero: FC = () => {
     <div className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <img
-          src="/renthub-developer-guide/images/renthub-banner.png"
+          src="/images/renthub-banner.png"
           alt="RentHub Banner"
         />
         <h1 className="hero__title">{siteConfig.title}</h1>
