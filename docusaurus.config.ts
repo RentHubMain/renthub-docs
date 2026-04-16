@@ -1,6 +1,36 @@
+import path from 'path';
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+const githubOrg = 'RentHubMain';
+const githubRepo = 'renthub-docs';
+const githubDefaultBranch = 'main';
+
+/**
+ * 「编辑此页」链接：
+ * - 本地 `npm start`（NODE_ENV !== production）：用编辑器协议打开本机 Markdown（默认 vscode，可用 DOC_EDIT_PROTOCOL=cursor）
+ * - 生产构建：指向 GitHub 在线编辑
+ *
+ * 环境变量：DOC_EDIT_PROTOCOL — 例如 `cursor`（默认 `vscode`）
+ */
+function createEditUrl(repoContentSubdir: 'docs' | 'legal') {
+  return ({
+    docPath,
+    versionDocsDirPath,
+  }: {
+    docPath: string;
+    versionDocsDirPath: string;
+  }): string | undefined => {
+    if (process.env.NODE_ENV !== 'production') {
+      const absolutePath = path.resolve(process.cwd(), versionDocsDirPath, docPath);
+      const scheme = process.env.DOC_EDIT_PROTOCOL ?? 'vscode';
+      const normalized = absolutePath.replace(/\\/g, '/');
+      return `${scheme}://file/${encodeURI(normalized)}`;
+    }
+    return `https://github.com/${githubOrg}/${githubRepo}/edit/${githubDefaultBranch}/${repoContentSubdir}/${docPath}`;
+  };
+}
 
 const config: Config = {
   title: 'RentHub文档站',
@@ -43,7 +73,7 @@ const config: Config = {
             label: '0.0.2',
           },
         },
-        editUrl: () => undefined,
+        editUrl: createEditUrl('legal'),
       },
     ],
   ],
@@ -54,7 +84,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: () => undefined,
+          editUrl: createEditUrl('docs'),
         },
         blog: false,
         theme: {
