@@ -92,16 +92,15 @@ const config: Config = {
           label: '快速开始',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'productThinkingSidebar',
-          position: 'left',
-          label: '产品文档',
-        },
-        {
           type: 'dropdown',
           label: '开发文档',
           position: 'left',
           items: [
+            {
+              type: 'docSidebar',
+              sidebarId: 'productThinkingSidebar',
+              label: '产品文档',
+            },
             {
               type: 'docSidebar',
               sidebarId: 'vibeCodingSidebar',

@@ -4,6 +4,7 @@ import { useLocation } from '@docusaurus/router';
 import clsx from 'clsx';
 import {
   Zap,
+  Lightbulb,
   Terminal,
   GitBranch,
   Layout,
@@ -20,6 +21,7 @@ import styles from './styles.module.css';
 // ── 导航数据 ─────────────────────────────────────────
 const NAV_SECTIONS = [
   { label: '快速开始',  to: '/docs/quick-start/',    Icon: Zap },
+  { label: '产品文档',  to: '/docs/product-thinking/', Icon: Lightbulb },
   { label: 'Vibe Coding', to: '/docs/vibe-coding/', Icon: Terminal },
   { label: '项目管理',  to: '/docs/project-mgmt/',   Icon: GitBranch },
   { label: '界面设计',  to: '/docs/ui-design/',       Icon: Layout },
@@ -33,7 +35,7 @@ const EXTERNAL_LINKS = [
 
 const SIDEBAR_LABELS: Record<string, string> = {
   quickStartSidebar:   '快速开始',
-  productThinkingSidebar: '产品思维',
+  productThinkingSidebar: '产品文档',
   vibeCodingSidebar:   'Vibe Coding',
   projectMgmtSidebar:  '项目管理',
   uiDesignSidebar:     '界面设计',

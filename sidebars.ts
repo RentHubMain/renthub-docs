@@ -62,7 +62,7 @@ const sidebars: SidebarsConfig = {
   productThinkingSidebar: [
     {
       type: 'category',
-      label: '产品思维',
+      label: '产品文档',
       link: { type: 'doc', id: 'product-thinking/index' },
       items: [
         'product-thinking/product-owner-mindset',
