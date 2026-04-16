@@ -1,16 +1,16 @@
 ---
-description: RentHub 开发者指南文档站全局规范
+description: RentHub文档站（Docusaurus）全局规范
 alwaysApply: true
 ---
 
-# RentHub 开发者指南 — 项目规范
+# RentHub文档站 — 项目规范
 
 ## 项目性质
 
-本仓库 **`renthub-developer-guide`** 是 **文档项目**：使用 **Docusaurus 3** 构建静态站点，为 RentHub 团队提供一站式开发者参考手册。
+本仓库 **`renthub-docs`** 是 **文档项目**：使用 **Docusaurus 3** 构建静态站点，即 **RentHub文档站**（`docs.renthub.cloud`），面向团队内外读者提供可检索的 **综合文档与知识库**（产品、设计、开发工程、法律协议等专题；可持续扩展）。
 
 - **本仓库仅包含文档站源码**（配置、`docs/`、`src/pages/`、`src/theme/` 等），**不包含**小程序、云函数、管理后台、官网等业务实现代码。
-- **RentHub 产品线**（基于微信小程序的租赁市场平台，含 Web 管理后台）在工程上通常采用 **Monorepo**；常见模块划分用于文档叙述与读者上下文理解，例如：
+- **RentHub（租汇）产品线**（轻资产服务平台：物品与工业设备 **B2B/C2C 租赁**，当前以 **C2C** 为主；基于微信小程序并含 Web 管理后台）在工程上通常采用 **Monorepo**；文档叙事统一使用 **租户（承租方，lessee）**、**商户（出租方，lessor）**（C2C 个人卖家亦称商户）。常见模块划分用于文档叙述与读者上下文理解，例如：
   - 小程序前端（WXML + WXSS + JS）
   - 云函数（user / asset / order / help / message / admin 等）
   - React + TypeScript Web 管理后台

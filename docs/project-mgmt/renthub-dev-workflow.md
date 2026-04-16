@@ -4,7 +4,7 @@ title: RentHub 业务仓库开发工作流
 
 本文描述 **RentHub 业务 Monorepo**（微信小程序、云函数、共享契约与测试等）从日常开发到合并主干、再到微信侧发布的完整工作流，以及当前 **GitHub Actions `Build`** 流水线在做什么、不做什么。
 
-> **说明**：本页**不是**文档站仓库 `renthub-developer-guide` 的流程。文档站以 Docusaurus 构建、部署到 GitHub Pages 为主，见 [GitHub Actions 工作流](/docs/project-mgmt/github-actions) 第4 节。CI/CD 通用概念亦可在该文中查阅。
+> **说明**：本页**不是**文档站仓库 `renthub-docs` 的流程。文档站以 Docusaurus 构建、部署到 GitHub Pages 为主，见 [GitHub Actions 工作流](/docs/project-mgmt/github-actions) 第4 节。CI/CD 通用概念亦可在该文中查阅。
 
 ---
 

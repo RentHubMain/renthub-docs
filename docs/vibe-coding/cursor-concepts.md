@@ -52,7 +52,9 @@ Skills 支持：
 - 触发频率高、步骤固定的流程（如部署、PR 流程）优先封装
 - 不要把所有规范都塞进 Skill——结构性约束放 Rules，流程性操作放 Skills
 
-### 2.3 项目示例：renthub-commit
+### 2.3 项目示例
+
+**示例 A — `renthub-commit`（单步 git 工作流）**
 
 本仓库已内置 `renthub-commit` skill，封装了 RentHub 的 Conventional Commits 规范：
 
@@ -61,6 +63,25 @@ Skills 支持：
 - 展示给用户确认后执行 `git commit`
 
 触发方式：在 Composer 中说"帮我 commit"或输入 `/renthub-commit`。
+
+---
+
+**示例 B — `legal-version-release`（多步流程自动化）**
+
+本仓库内置的第二个 skill，封装了法律文档的版本发布流程，是 Skill 处理复杂多步骤任务的典型示例：
+
+触发后，Agent 依次执行：
+
+1. 向用户确认旧版本号、新版本号、生效日期（三个参数）
+2. 运行 `npx docusaurus docs:version:legal <旧版本>` 归档当前版本
+3. 更新 `legal/` 下各协议文件的 front matter 与 tip 提示块
+4. 更新 `docusaurus.config.ts` 中的版本标签与 navbar 下拉菜单
+5. 运行 `npm run build` 构建验证
+6. 输出变更摘要，提示使用 `/renthub-commit` 完成 commit
+
+触发方式：`/legal-version-release` 或说"发布法律文档新版本"。
+
+**为什么用 Skill 而非每次手工描述？** 发布流程涉及 4 个文件、6 个步骤，细节容易遗漏（如忘记更新 navbar、跳过某份协议的 tip 块）。Skill 把 SOP 固化，Agent 不会跳步，执行者只需提供三个参数。这是 Skills 相较于临时 prompt 最核心的价值：**把容易出错的多步骤流程变成不可遗漏的清单**。
 
 > Skills 目前在 Nightly 渠道可用，正式版尚未全面开放，可关注更新。
 

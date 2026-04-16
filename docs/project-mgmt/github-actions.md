@@ -125,7 +125,7 @@ jobs:
 
 ## 4. 示例：本项目的部署工作流
 
-本文档站（`renthub-developer-guide`）使用 GitHub Actions 自动将 Docusaurus 站点部署到 GitHub Pages。工作流文件位于 `.github/workflows/deploy-pages.yml`。
+本文档站（`renthub-docs`）使用 GitHub Actions 自动将 Docusaurus 站点部署到 GitHub Pages。工作流文件位于 `.github/workflows/deploy-pages.yml`。
 
 下面逐段讲解这份真实的配置文件。
 
