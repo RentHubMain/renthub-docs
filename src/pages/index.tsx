@@ -175,8 +175,9 @@ const QuickStart: FC = () => (
         <Link to="/docs/dev-knowledge/js-es6">JavaScript ES6+</Link>
         {' '}；版本管理与工作流其余文档见{' '}
         <Link to="/docs/project-mgmt/">板块索引</Link>
-        {' '}，开发知识见{' '}
-        <Link to="/docs/dev-knowledge/">开发知识</Link>。
+        {' '}；开发知识见{' '}
+        <Link to="/docs/dev-knowledge/">开发知识</Link>
+        。
       </p>
     </div>
   </section>
