@@ -43,8 +43,7 @@ const config: Config = {
             label: '0.0.2',
           },
         },
-        editUrl:
-          'https://github.com/RentHubMain/renthub-docs/edit/main/',
+        editUrl: () => undefined,
       },
     ],
   ],
@@ -55,8 +54,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/RentHubMain/renthub-docs/edit/main/',
+          editUrl: () => undefined,
         },
         blog: false,
         theme: {
@@ -147,11 +145,6 @@ const config: Config = {
         {
           href: 'https://www.renthub.cloud/',
           label: '官网',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/RentHubMain/renthub-docs',
-          label: 'GitHub',
           position: 'right',
         },
         {

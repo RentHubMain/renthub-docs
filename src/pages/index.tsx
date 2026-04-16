@@ -117,15 +117,6 @@ const HomepageHero: FC = () => {
             >
               renthub.cloud
             </a>
-            <span className={styles.heroDot} />
-            源码：<a
-              href="https://github.com/RentHubMain/renthub-docs"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.heroLink}
-            >
-              GitHub
-            </a>
           </p>
           <div className={styles.heroActions}>
             <Link className={styles.btnSecondary} to="/docs/quick-start">
