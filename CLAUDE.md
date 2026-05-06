@@ -2,14 +2,14 @@
 
 ## 项目概述
 
-RentHub 官方综合文档站，使用 **Docusaurus 3** 构建，部署在 GitHub Pages（`docs.renthub.cloud`）。内容涵盖产品、开发、设计、法律协议等专题，不包含业务代码。
+RentHub 官方综合文档站，使用 **Docusaurus 3** 构建，部署在 Cloudflare Pages（`docs.renthub.cloud`）。内容涵盖产品、开发、设计、法律协议等专题，不包含业务代码。
 
 ## 技术栈
 
 - **框架:** Docusaurus 3（React + MDX），`preset-classic`
 - **语言:** TypeScript（配置）+ Markdown（内容）
 - **国际化:** `zh-Hans`（当前仅中文）
-- **部署:** GitHub Actions → GitHub Pages（`.github/workflows/deploy-pages.yml`）
+- **部署:** GitHub Actions → Cloudflare Pages（`.github/workflows/deploy-pages.yml`）
 
 ## 目录结构
 
@@ -20,7 +20,7 @@ src/
   pages/        # 站点首页（React）
   theme/        # swizzle 的主题组件
   css/          # 全站样式（custom.css）
-static/         # 构建时复制到根目录（CNAME, .nojekyll）
+static/         # 构建时复制到根目录（静态资源）
 assets/         # 图片等静态资源
 docusaurus.config.ts  # 站点主配置
 sidebars.ts           # 文档侧栏结构

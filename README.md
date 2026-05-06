@@ -4,7 +4,7 @@
 
 本仓库 **`renthub-docs`** 是 **RentHub（租汇）官方综合文档站**的源码：使用 [Docusaurus 3](https://docusaurus.io/) 将 `docs/`、`legal/` 等目录下的 Markdown 构建为静态站点。内容覆盖快速开始、产品、开发协作、界面设计、法律知识库等主题；**不包含**小程序、云函数、管理后台等业务实现代码。
 
-**线上站点**：[docs.renthub.cloud](https://docs.renthub.cloud)（由本仓库构建部署，自定义域名见 `static/CNAME`）。
+**线上站点**：[docs.renthub.cloud](https://docs.renthub.cloud)（由本仓库构建部署，域名托管在 Cloudflare）。
 
 ## 公司简介
 
@@ -33,7 +33,7 @@ RentHub 客户端以 **微信小程序** 为主触点，配套 **Web 管理后�
 | `src/pages/` | 站点首页（React）及样式模块 |
 | `src/css/custom.css` | 全站 Infima 变量与品牌色 |
 | `src/theme/DocRoot/Layout/` | 通过 `docusaurus swizzle` 定制的文档页布局（侧栏、主内容区等） |
-| `static/` | 构建时复制到站点根目录（如 `.nojekyll`、`CNAME`） |
+| `static/` | 构建时复制到站点根目录（站点静态资源） |
 | `assets/` | 图片等静态资源（在配置中作为 `staticDirectories` 之一挂载） |
 
 编写与导航约定见：[`.cursor/rules/project-guide.mdc`](./.cursor/rules/project-guide.mdc)。
@@ -93,11 +93,19 @@ npm run serve        # 本地预览构建产物
 
 ## 部署
 
-本仓库通过 [GitHub Actions](./.github/workflows/deploy-pages.yml) 在推送至 **`main`** 或 **`master`** 时构建 `build/` 并发布到 **GitHub Pages**。
+本仓库通过 [GitHub Actions](./.github/workflows/deploy-pages.yml) 在推送至 **`main`** 时构建 `build/` 并发布到 **Cloudflare Pages**。
 
-1. 在 GitHub 打开本仓库的 **Settings → Pages**。
-2. 在 **Build and deployment** 中，将 **Source** 设为 **GitHub Actions**（不要选 “Deploy from a branch”）。
-3. 若使用 GitHub 默认域名，访问形式一般为 `https://<用户或组织>.github.io/renthub-docs/`（以仓库实际名称为准）。本仓库同时通过 `static/CNAME` 配置 **自定义域名** `docs.renthub.cloud`；DNS 与证书需在域名/GitHub 侧按官方文档配置。
+工作流关键步骤：
+
+1. `npm ci` 安装依赖。
+2. `npm run build` 生成 Docusaurus 产物（`build/`）。
+3. 使用 `wrangler-action` 自动确保 Pages 项目存在（`renthub-admin`）。
+4. 执行 `pages deploy build --project-name renthub-admin` 发布到 Cloudflare Pages。
+
+部署前请在 GitHub 仓库中配置以下 Secrets：
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
 
 ## 法律文档版本管理
 

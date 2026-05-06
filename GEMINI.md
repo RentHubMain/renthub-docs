@@ -2,7 +2,7 @@
 
 ## 概述
 
-RentHub 官方综合文档站，使用 **Docusaurus 3** 构建为静态站点，部署在 GitHub Pages（`docs.renthub.cloud`）。内容覆盖产品使用、开发工程、界面设计、法律协议等专题，独立于业务代码仓库。
+RentHub 官方综合文档站，使用 **Docusaurus 3** 构建为静态站点，部署在 Cloudflare Pages（`docs.renthub.cloud`）。内容覆盖产品使用、开发工程、界面设计、法律协议等专题，独立于业务代码仓库。
 
 ## 技术架构
 
@@ -12,7 +12,7 @@ RentHub 官方综合文档站，使用 **Docusaurus 3** 构建为静态站点，
 | 语言 | TypeScript（配置）+ Markdown/MDX（内容）|
 | 样式 | Infima CSS（Docusaurus 内置）+ 自定义变量 |
 | 国际化 | `zh-Hans`（`i18n.defaultLocale`）|
-| 部署 | GitHub Actions → GitHub Pages |
+| 部署 | GitHub Actions → Cloudflare Pages |
 
 ## 目录结构
 
@@ -36,7 +36,7 @@ docs/                     # 文档正文
 legal/                    # 法律协议（商家/租户租赁协议）
 legal_versioned_docs/     # 法律文档历史版本
 
-static/                   # 构建时复制到根（CNAME, .nojekyll）
+static/                   # 构建时复制到根（静态资源）
 assets/images/            # 图片资源（在 staticDirectories 注册）
 ```
 
@@ -60,11 +60,13 @@ npm run serve     # 本地预览
 ## 部署
 
 GitHub Actions 触发于 `main` 分支 push：
-1. 安装依赖
-2. `npm run build`
-3. 发布到 `gh-pages` 分支 → GitHub Pages
+1. 安装依赖（`npm ci`）
+2. `npm run build` 生成 `build/`
+3. 通过 `wrangler-action` 执行 `pages deploy build --project-name renthub-admin` 部署到 Cloudflare Pages
 
-自定义域名 `docs.renthub.cloud` 在 `static/CNAME` 中声明。
+部署依赖以下 GitHub Secrets：
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
 
 ## 注意事项
 
