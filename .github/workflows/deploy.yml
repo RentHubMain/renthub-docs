@@ -30,7 +30,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create renthub-admin --production-branch main
+          command: pages project create renthub-docs --production-branch main
         continue-on-error: true
 
       - name: Deploy to Cloudflare Pages
@@ -38,4 +38,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build --project-name renthub-admin
+          command: pages deploy build --project-name renthub-docs
