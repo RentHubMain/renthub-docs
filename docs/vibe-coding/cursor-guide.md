@@ -2,7 +2,7 @@
 title: Cursor 使用指南
 ---
 
-本文解决“怎么把 Cursor 用顺手”的问题：账号、额度、模型选择、token 控制和提示词写法。把这层跑通后，再看 [Cursor 核心概念](/docs/vibe-coding/cursor-concepts) 理解规则和工作流的边界；如果还想把同一套约定扩展到 Copilot、Claude Code、Codex CLI，就继续看 [Beyond Cursor：统一 AI 工具箱](/docs/vibe-coding/beyond-cursor-toolbox)；如果关心这些约定最后怎么变成可交付结果，详见 [Agent Harness：把 AI 变成可控工作流](/docs/vibe-coding/agent-harness)。
+本文解决“怎么把 Cursor 用顺手”的问题：账号、额度、模型选择、token 控制和提示词写法。把这层跑通后，再看 [Cursor 核心概念](/docs/vibe-coding/cursor-concepts) 理解规则和工作流的边界；如果要把同一套 Agent Skills 安装到 Cursor、Claude Code、Codex 等客户端，就继续看 [Beyond Cursor：用 npx skills 安装 Agent Skills](/docs/vibe-coding/beyond-cursor-toolbox)；如果关心这些约定最后怎么变成可交付结果，详见 [Agent Harness：把 AI 变成可控工作流](/docs/vibe-coding/agent-harness)。
 
 ## 1. 账号获取
 

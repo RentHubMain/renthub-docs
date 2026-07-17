@@ -2,7 +2,7 @@
 title: Vibe Coding 指南
 ---
 
-本板块记录 RentHub 团队在 AI 辅助开发中的使用约定，覆盖从 Cursor 的具体用法，到 Cursor 内部机制，再到 Rulesync 跨工具统一层，最后到 Agent harness 执行层的完整路径。按这个顺序阅读，最容易把“怎么用”与“为什么这样设计”连起来。
+本板块记录 RentHub 团队在 AI 辅助开发中的使用约定，覆盖从 Cursor 的具体用法，到 Cursor 内部机制，再到用 `npx skills` 跨工具安装 Agent Skills，最后到 Agent harness 执行层的完整路径。按这个顺序阅读，最容易把“怎么用”与“为什么这样设计”连起来。
 
 ## 目录
 
@@ -10,7 +10,7 @@ title: Vibe Coding 指南
 |------|------|
 | [Cursor 使用指南](/docs/vibe-coding/cursor-guide) | 账号、模型选择、限额配置与 token 控制 |
 | [Cursor 核心概念](/docs/vibe-coding/cursor-concepts) | Rules / Skills / Commands / Subagents / MCP 定义与 Best Practice |
-| [Beyond Cursor：统一AI工具箱](/docs/vibe-coding/beyond-cursor-toolbox) | Rulesync 的定位、仓库结构与日常使用方式 |
+| [Beyond Cursor：用 npx skills 安装 Agent Skills](/docs/vibe-coding/beyond-cursor-toolbox) | Node / npm 前提、`npx skills add` 与跨工具安装 |
 | [Agent Harness：把 AI 变成可控工作流](/docs/vibe-coding/agent-harness) | 把模型、工具、状态和反馈组织成可交付流程 |
 
 ---
@@ -22,7 +22,7 @@ title: Vibe Coding 指南
 - 合理配置 Cursor 的模型选择与额度，有效控制 API 成本
 - 理解 Cursor 的实际使用方式与效率边界
 - 理解并运用 Rules、Skills、Commands、MCP 等 Cursor 核心概念
-- 理解 Rulesync 作为统一 AI 工具箱的作用，并能按仓库规范生成各工具配置
+- 理解为何需要 `npx skills add`，并能在具备 Node / npm 的环境下安装与更新 Agent Skills
 - 理解 agent harness 如何把模型、工具、状态和反馈连成可交付流程
 - 在日常开发中高效运用 AI 工具完成需求，减少重复摸索
 

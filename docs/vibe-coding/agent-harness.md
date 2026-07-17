@@ -2,7 +2,7 @@
 title: Agent Harness：把 AI 变成可控工作流
 ---
 
-前面三篇分别讲了怎么用 Cursor、Cursor 里有哪些核心机制，以及如何把这些约定统一到 Rulesync。到这一层，问题已经不是“模型会不会回答”，而是“模型生成的东西能不能稳定落地”。
+前面三篇分别讲了怎么用 Cursor、Cursor 里有哪些核心机制，以及如何用 `npx skills` 把 Agent Skills 安装到多个客户端。到这一层，问题已经不是“模型会不会回答”，而是“模型生成的东西能不能稳定落地”。
 
 **Harness 解决的核心问题**：AI 模型是概率性的，而软件交付需要确定性。Harness 是模型外面那一圈工程设施——规则、工具、状态、执行环境、反馈回路——负责把“大概率正确的输出”变成“可执行、可验证、可继续推进的工作”。
 
@@ -33,7 +33,7 @@ Harness 不是让 AI 更“聪明”，而是让任务不依赖单次对话的�
 
 | 事情 | 具体做法 | 没做时的代价 |
 |------|---------|------------|
-| **方向约束** | Rules、Rulesync、skills、commands | 模型每次输出可能漂到不同风格 |
+| **方向约束** | Rules、Skills（含 `npx skills` 安装）、commands | 模型每次输出可能漂到不同风格 |
 | **实际执行** | git、npm、构建工具、浏览器验证 | 模型只会“说”，不会真的做完 |
 | **状态持久化** | 分支、commit 历史、progress 文件 | 多轮任务靠聊天记录维持，上下文变长后开始漂 |
 | **反馈回路** | build 验证、review、构建日志 | 错误进入下一步甚至进入 main 才被发现 |
@@ -163,7 +163,7 @@ Harness 引入的是结构和约束，不是灵活性。以下情况不需要：
 |------|--------|----------|
 | 使用层 | 怎么把 Cursor 用顺手 | [Cursor 使用指南](/docs/vibe-coding/cursor-guide) |
 | 机制层 | Cursor 里的 Rules / Skills / Commands / MCP 怎么分工 | [Cursor 核心概念](/docs/vibe-coding/cursor-concepts) |
-| 统一层 | 怎么把约定扩展到多个 AI 客户端 | [Beyond Cursor：统一AI工具箱](/docs/vibe-coding/beyond-cursor-toolbox) |
+| 统一层 | 怎么用 `npx skills` 把 Skills 装到多个 AI 客户端 | [Beyond Cursor：用 npx skills 安装 Agent Skills](/docs/vibe-coding/beyond-cursor-toolbox) |
 | 执行层 | 怎么把这些约定变成可交付的工程流程 | 本文 |
 
 ---

@@ -106,7 +106,7 @@ Skills 支持：
 - Skill 内容要具体、步骤明确，写法类似内部 SOP
 - 触发频率高、步骤固定的流程（如部署、PR 流程）优先封装
 - 不要把所有规范都塞进 Skill——结构性约束放 Rules，流程性操作放 Skills
-- 当规则已经稳定到需要跨工具复用时，说明它不该继续困在某个客户端里，而该进入 Rulesync 这一层
+- 当 Skill 已经稳定到需要跨工具安装时，说明它不该继续困在某个客户端目录里，而该用 [npx skills add](/docs/vibe-coding/beyond-cursor-toolbox) 统一安装与同步
 
 ### 2.3 项目示例
 
