@@ -8,7 +8,7 @@ title: Cursor 核心概念指南
 
 ### 1.1 是什么
 
-Rules 是写给 Agent 的持久化指令，每次对话开始时自动注入到 context 中。本质是 `.cursor/rules/` 下的 Markdown 文件。
+Rules 是写给 Agent 的持久化指令，每次对话开始时自动注入到 context 中。本仓库规范放在仓库根目录 `.agents/rules/`（Cursor 通过链接到 `.cursor/rules/` 加载）。
 
 四种类型：
 
@@ -90,7 +90,7 @@ function calcPrice(price: number, discount: number) {
 
 ### 2.1 是什么
 
-Skills 是可复用的工作流指令，定义在 `SKILL.md` 文件中，放在 `.cursor/skills/<skill-name>/` 下。与 Rules 的区别：
+Skills 是可复用的工作流指令，定义在 `SKILL.md` 文件中，放在 `.agents/skills/<skill-name>/` 下（Cursor 通过 `.cursor/skills` 链接发现）。与 Rules 的区别：
 
 - Rules 每次都加载（静态）
 - Skills 只在 Agent 判断相关时才加载（动态），不占 context window

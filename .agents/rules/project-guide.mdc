@@ -27,9 +27,9 @@ alwaysApply: true
 - **静态站点生成器**：Docusaurus 3（React + MDX），`preset-classic`，**未启用 blog**
 - **语言**：TypeScript（配置与主题组件）+ Markdown（文档正文）
 - **国际化**：`i18n.defaultLocale` 为 `zh-Hans`（当前仅该 locale）
-- **部署**：GitHub Actions → GitHub Pages（见 `.github/workflows/deploy-pages.yml`）
+- **部署**：GitHub Actions → Cloudflare Pages（见 `.github/workflows/deploy.yml`）
 - **主题**：Docusaurus classic + Infima CSS（主题色 `#3d7c47` / `#7cb342`）
-- **依赖管理**：npm（`package.json`）；`overrides` 将 `webpack` 固定为 `5.95.0`（与 `webpackbar@6` / Node 高版本兼容性相关，见文末说明）
+- **依赖与工具链**： [Vite+](https://viteplus.dev/guide/)（`vp` CLI + `vite-plus`）；`package.json` 中 `overrides` 将 `webpack` 固定为 `5.95.0`（与 `webpackbar@6` / Node 高版本兼容性相关，见文末说明）
 
 ---
 
@@ -41,6 +41,14 @@ sidebars.ts              # 文档侧栏（docsSidebar）
 package.json             # 依赖与 scripts
 tsconfig.json            # TypeScript 配置
 babel.config.js          # Babel 配置
+vite.config.ts           # Vite+ 配置（fmt / lint / staged）
+
+.agents/                 # AI 助手配置（Skills、Rules；见 .agents/README.md）
+  skills/                # 可复用工作流（SKILL.md）
+  rules/                 # 项目级规则（.mdc）
+
+scripts/
+  link-agents.mjs        # 将 .cursor/skills、.cursor/rules 链接到 .agents/
 
 src/
   css/custom.css         # 全站样式（Infima 变量覆盖，品牌色）
@@ -219,13 +227,18 @@ title: 板块名称
 
 ## 本地开发
 
+使用 [Vite+](https://viteplus.dev/guide/) 统一工具链；Docusaurus 的 dev/build 通过 `vp run <script>` 调用 `package.json` scripts。
+
 ```bash
-npm install        # 安装依赖（首次或依赖变更后）
-npm start          # 启动开发服务器，默认 http://localhost:3000/（baseUrl 为 /）
-npm run build      # 生产构建，产物在 build/
-npm run serve      # 本地预览构建产物
-npm run format:md  # 统一格式化 docs / legal / legal_versioned_docs 下 Markdown
-npm run format:md:check  # 检查格式（未格式化则非零退出，供 CI 使用）
+vp install              # 安装依赖（首次或依赖变更后）
+vp run start            # 启动开发服务器，默认 http://localhost:3000/（baseUrl 为 /）
+vp run build            # 生产构建，产物在 build/
+vp run serve            # 本地预览构建产物
+vp check                # 格式化、Lint 与类型检查（TS/JS/CSS 等）
+vp run format:md        # 统一格式化 docs / legal / legal_versioned_docs 下 Markdown
+vp run format:md:check  # 检查格式（未格式化则非零退出，供 CI 使用）
 ```
+
+提交前 Git hook（`.vite-hooks/pre-commit`）会运行 `vp staged`：代码走 `vp check --fix`，Markdown 走 `format:md:check`（配置见 `vite.config.ts`）。
 
 **注意**：`package.json` 中通过 `overrides` 将 `webpack` 固定在 `5.95.0`，原因是 `webpackbar@6` 与 webpack 5.96+ 存在 ProgressPlugin API 不兼容问题（Node 24 环境下复现）。升级 webpack 前须确认 `webpackbar` 已修复该问题。

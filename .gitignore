@@ -17,10 +17,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# AI tools — ignore runtime/cache, keep config files
-.claude/
-.obsidian/
+# AI tools — runtime/cache ignored; agent config lives in .agents/
+.claude
+.obsidian
 skills-lock.json
-.cursor/*
-!.cursor/rules/
-!.cursor/rules/**
+.cursor

@@ -36,7 +36,7 @@ RentHub 客户端以 **微信小程序** 为主触点，配套 **Web 管理后�
 | `static/` | 构建时复制到站点根目录（站点静态资源） |
 | `assets/` | 图片等静态资源（在配置中作为 `staticDirectories` 之一挂载） |
 
-编写与导航约定见：[`.cursor/rules/project-guide.mdc`](./.cursor/rules/project-guide.mdc)。
+编写与导航约定见：[`.agents/rules/project-guide.mdc`](./.agents/rules/project-guide.mdc)。
 
 ## 文档目录
 
@@ -84,21 +84,28 @@ RentHub 客户端以 **微信小程序** 为主触点，配套 **Web 管理后�
 
 `docusaurus.config.ts` 中 **`baseUrl` 为 `/`**，本地默认地址为站点根路径（无子路径前缀）。
 
+本仓库使用 [Vite+](https://viteplus.dev/guide/) 统一工具链（`vp` 管理 Node、依赖与代码检查）。Docusaurus 的 dev/build 仍通过 `package.json` scripts 执行。
+
 ```bash
-npm install          # 首次安装，或依赖变更后
-npm start            # 开发服务器，默认 http://localhost:3000/
-npm run build        # 生产构建，产物在 build/
-npm run serve        # 本地预览构建产物
+vp install           # 首次安装，或依赖变更后
+vp run start         # 开发服务器，默认 http://localhost:3000/
+vp run build         # 生产构建，产物在 build/
+vp run serve         # 本地预览构建产物
+vp check             # 格式化、Lint 与类型检查
+vp run format:md     # 统一格式化 docs / legal 等 Markdown
 ```
+
+未安装 `vp` 时，见 [Getting Started](https://viteplus.dev/guide/)（Windows：`irm https://vite.plus/ps1 | iex`）。
 
 ## 部署
 
-本仓库通过 [GitHub Actions](./.github/workflows/deploy-pages.yml) 在推送至 **`main`** 时构建 `build/` 并发布到 **Cloudflare Pages**。
+本仓库通过 [GitHub Actions](./.github/workflows/deploy.yml) 在推送至 **`main`** 时构建 `build/` 并发布到 **Cloudflare Pages**。
 
 工作流关键步骤：
 
-1. `npm ci` 安装依赖。
-2. `npm run build` 生成 Docusaurus 产物（`build/`）。
+1. `voidzero-dev/setup-vp` 安装 Vite+ 与 Node.js。
+2. `vp install` 安装依赖；`vp check` 与 `vp run format:md:check` 做代码与 Markdown 检查。
+3. `vp run build` 生成 Docusaurus 产物（`build/`）。
 3. 使用 `wrangler-action` 自动确保 Pages 项目存在（`renthub-admin`）。
 4. 执行 `pages deploy build --project-name renthub-admin` 发布到 Cloudflare Pages。
 
@@ -139,7 +146,7 @@ lastUpdated: "YYYY-MM-DD"
 /legal-version-release
 ```
 
-Skill 会依次引导你归档旧版本、更新元数据、更新站点配置，并完成构建验证。完整 SOP 见 [`.cursor/skills/legal-version-release/SKILL.md`](./.cursor/skills/legal-version-release/SKILL.md)。
+Skill 会依次引导你归档旧版本、更新元数据、更新站点配置，并完成构建验证。完整 SOP 见 [`.agents/skills/legal-version-release/SKILL.md`](./.agents/skills/legal-version-release/SKILL.md)。
 
 如需手动操作，核心命令为：
 
@@ -156,4 +163,4 @@ npx docusaurus docs:version:legal 0.0.2
 
 ---
 
-仓库级编写规范见：[`.cursor/rules/project-guide.mdc`](./.cursor/rules/project-guide.mdc)
+仓库级编写规范见：[`.agents/rules/project-guide.mdc`](./.agents/rules/project-guide.mdc)
