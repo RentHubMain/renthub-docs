@@ -17,11 +17,13 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.15s, transform 0.15s;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
   z-index: 1000;
 }
 
-[data-theme='dark'] .link::after {
+[data-theme="dark"] .link::after {
   background: rgba(230, 230, 230, 0.95);
   color: #111;
 }

@@ -1,13 +1,13 @@
-import React, {type ReactNode} from 'react';
-import {useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
-import BackToTopButton from '@theme/BackToTopButton';
-import DocRootLayoutSidebar from '@theme/DocRoot/Layout/Sidebar';
-import DocRootLayoutMain from '@theme/DocRoot/Layout/Main';
-import type {Props} from '@theme/DocRoot/Layout';
+import React, { type ReactNode } from "react";
+import { useDocsSidebar } from "@docusaurus/plugin-content-docs/client";
+import BackToTopButton from "@theme/BackToTopButton";
+import DocRootLayoutSidebar from "@theme/DocRoot/Layout/Sidebar";
+import DocRootLayoutMain from "@theme/DocRoot/Layout/Main";
+import type { Props } from "@theme/DocRoot/Layout";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-export default function DocRootLayout({children}: Props): ReactNode {
+export default function DocRootLayout({ children }: Props): ReactNode {
   const sidebar = useDocsSidebar();
   return (
     <div className={styles.docsWrapper}>
@@ -20,9 +20,7 @@ export default function DocRootLayout({children}: Props): ReactNode {
             setHiddenSidebarContainer={() => {}}
           />
         )}
-        <DocRootLayoutMain hiddenSidebarContainer={false}>
-          {children}
-        </DocRootLayoutMain>
+        <DocRootLayoutMain hiddenSidebarContainer={false}>{children}</DocRootLayoutMain>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 /**
  * API 文档按分组拆分为多个 sidebar：
@@ -9,57 +9,57 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   apiOverviewSidebar: [
     {
-      type: 'doc',
-      id: 'index',
-      label: '概览',
+      type: "doc",
+      id: "index",
+      label: "概览",
     },
   ],
   apiSpecSidebar: [
     {
-      type: 'category',
-      label: '规范',
+      type: "category",
+      label: "规范",
       collapsed: false,
-      items: ['api-spec', 'common-error-codes'],
+      items: ["api-spec", "common-error-codes"],
     },
   ],
   apiCoreSidebar: [
     {
-      type: 'category',
-      label: '核心业务',
+      type: "category",
+      label: "核心业务",
       collapsed: false,
-      items: ['user', 'order', 'asset', 'seller-home'],
+      items: ["user", "order", "asset", "seller-home"],
     },
   ],
   apiCreditSidebar: [
     {
-      type: 'category',
-      label: '信用与评价',
+      type: "category",
+      label: "信用与评价",
       collapsed: false,
-      items: ['experience', 'review', 'referral', 'newbie'],
+      items: ["experience", "review", "referral", "newbie"],
     },
   ],
   apiDisputeSidebar: [
     {
-      type: 'category',
-      label: '保障与争议',
+      type: "category",
+      label: "保障与争议",
       collapsed: false,
-      items: ['breach', 'insurance', 'dispute'],
+      items: ["breach", "insurance", "dispute"],
     },
   ],
   apiMessageSidebar: [
     {
-      type: 'category',
-      label: '消息与帮助',
+      type: "category",
+      label: "消息与帮助",
       collapsed: false,
-      items: ['message', 'help'],
+      items: ["message", "help"],
     },
   ],
   apiSystemSidebar: [
     {
-      type: 'category',
-      label: '系统与管理',
+      type: "category",
+      label: "系统与管理",
       collapsed: false,
-      items: ['preload', 'sfexpress', 'scheduler', 'admin'],
+      items: ["preload", "sfexpress", "scheduler", "admin"],
     },
   ],
 };

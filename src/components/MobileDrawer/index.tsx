@@ -1,7 +1,7 @@
-import React, { useEffect, type ReactNode } from 'react';
-import Link from '@docusaurus/Link';
-import { useLocation } from '@docusaurus/router';
-import clsx from 'clsx';
+import React, { useEffect, type ReactNode } from "react";
+import Link from "@docusaurus/Link";
+import { useLocation } from "@docusaurus/router";
+import clsx from "clsx";
 import {
   Zap,
   Lightbulb,
@@ -14,32 +14,32 @@ import {
   Folder,
   FileText,
   X,
-} from 'lucide-react';
-import { useMobileMenu, type SidebarItem } from '@site/src/contexts/MobileMenuContext';
-import styles from './styles.module.css';
+} from "lucide-react";
+import { useMobileMenu, type SidebarItem } from "@site/src/contexts/MobileMenuContext";
+import styles from "./styles.module.css";
 
 // ── 导航数据 ─────────────────────────────────────────
 const NAV_SECTIONS = [
-  { label: '快速开始',  to: '/docs/quick-start/',    Icon: Zap },
-  { label: '产品文档',  to: '/docs/product-thinking/', Icon: Lightbulb },
-  { label: 'Vibe Coding', to: '/docs/vibe-coding/', Icon: Terminal },
-  { label: '版本管理与工作流',  to: '/docs/project-mgmt/',   Icon: GitBranch },
-  { label: '界面设计',  to: '/docs/ui-design/',       Icon: Layout },
-  { label: '开发知识',  to: '/docs/dev-knowledge/',   Icon: BookOpen },
+  { label: "快速开始", to: "/docs/quick-start/", Icon: Zap },
+  { label: "产品文档", to: "/docs/product-thinking/", Icon: Lightbulb },
+  { label: "Vibe Coding", to: "/docs/vibe-coding/", Icon: Terminal },
+  { label: "版本管理与工作流", to: "/docs/project-mgmt/", Icon: GitBranch },
+  { label: "界面设计", to: "/docs/ui-design/", Icon: Layout },
+  { label: "开发知识", to: "/docs/dev-knowledge/", Icon: BookOpen },
 ];
 
 const EXTERNAL_LINKS = [
-  { label: '官网',   href: 'https://www.renthub.cloud/',                                Icon: Globe },
-  { label: 'GitHub', href: 'https://github.com/RentHubMain/renthub-docs',   Icon: GitFork },
+  { label: "官网", href: "https://www.renthub.cloud/", Icon: Globe },
+  { label: "GitHub", href: "https://github.com/RentHubMain/renthub-docs", Icon: GitFork },
 ];
 
 const SIDEBAR_LABELS: Record<string, string> = {
-  quickStartSidebar:   '快速开始',
-  productThinkingSidebar: '产品文档',
-  vibeCodingSidebar:   'Vibe Coding',
-  projectMgmtSidebar:  '版本管理与工作流',
-  uiDesignSidebar:     '界面设计',
-  devKnowledgeSidebar: '开发知识',
+  quickStartSidebar: "快速开始",
+  productThinkingSidebar: "产品文档",
+  vibeCodingSidebar: "Vibe Coding",
+  projectMgmtSidebar: "版本管理与工作流",
+  uiDesignSidebar: "界面设计",
+  devKnowledgeSidebar: "开发知识",
 };
 
 // ── 侧边栏目录递归渲染 ────────────────────────────────
@@ -55,7 +55,7 @@ function SidebarItems({
   return (
     <>
       {items.map((item, i) => {
-        if (item.type === 'category') {
+        if (item.type === "category") {
           return (
             <div key={i} className={styles.categoryBlock}>
               {item.href ? (
@@ -81,11 +81,11 @@ function SidebarItems({
             </div>
           );
         }
-        if (item.type === 'doc' || item.type === 'link') {
+        if (item.type === "doc" || item.type === "link") {
           return (
             <Link
               key={i}
-              to={item.href ?? '#'}
+              to={item.href ?? "#"}
               onClick={close}
               className={clsx(styles.docLink, currentPath === item.href && styles.active)}
             >
@@ -111,22 +111,23 @@ export default function MobileDrawer(): ReactNode {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
-  const sidebarLabel = sidebar ? (SIDEBAR_LABELS[sidebar.name] ?? '') : '';
+  const sidebarLabel = sidebar ? (SIDEBAR_LABELS[sidebar.name] ?? "") : "";
 
   return (
     <>
       <div className={styles.backdrop} onClick={close} />
       <div className={styles.drawer}>
-
         {/* 顶部关闭按钮行 */}
         <div className={styles.drawerHeader}>
           <button className={styles.closeButton} onClick={close} aria-label="关闭菜单">
@@ -176,7 +177,6 @@ export default function MobileDrawer(): ReactNode {
             <SidebarItems items={sidebar.items} close={close} currentPath={location.pathname} />
           </div>
         )}
-
       </div>
     </>
   );

@@ -7,7 +7,7 @@ sidebar_label: 管理员
 
 ---
 
-## 2. 获取集合列表 [GET]
+## 1. 获取集合列表 [GET]
 
 **接口描述**：获取数据库集合列表。
 
@@ -17,9 +17,46 @@ sidebar_label: 管理员
 | **HTTP 路由** | 不适用 |
 | **动作类型 (Action)** | `getCollections` |
 
-### 2.1 请求参数 (Parameters)
+### 1.1 请求参数 (Parameters)
 
 见 README 2.2 通用约定。
+
+### 1.2 响应数据 (Response)
+
+见通用约定。
+
+### 1.3 错误码 (Error Codes)
+
+见 [通用报错码](common-error-codes.md)。无管理员权限为 RH00004，配置相关为 RH00702。
+
+### 1.4 示例 (Examples)
+
+```json
+{
+  "action": "getCollections",
+  "data": {}
+}
+```
+
+---
+
+## 2. 获取集合内文档 [GET]
+
+**接口描述**：分页、筛选获取指定集合内文档。
+
+| 项目 | 说明 |
+| :--- | :--- |
+| **云函数名** | `admin` |
+| **HTTP 路由** | 不适用 |
+| **动作类型 (Action)** | `getDocuments` |
+
+### 2.1 请求参数 (Parameters)
+
+| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| collection | String | 是 | - | 集合名 | “users” |
+| page | Integer | 否 | 1 | 页码 | 1 |
+| pageSize | Integer | 否 | 20 | 每页条数 | 20 |
 
 ### 2.2 响应数据 (Response)
 
@@ -33,30 +70,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getCollections",
-  "data": {}
+  "action": "getDocuments",
+  "data": { "collection": "users" }
 }
 ```
 
 ---
 
-## 3. 获取集合内文档 [GET]
+## 3. 创建文档 [POST]
 
-**接口描述**：分页、筛选获取指定集合内文档。
+**接口描述**：在指定集合中创建文档。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getDocuments` |
+| **动作类型 (Action)** | `createDocument` |
 
 ### 3.1 请求参数 (Parameters)
 
-| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| collection | String | 是 | - | 集合名 | “users” |
-| page | Integer | 否 | 1 | 页码 | 1 |
-| pageSize | Integer | 否 | 20 | 每页条数 | 20 |
+见通用约定（含 collection、文档字段等）。
 
 ### 3.2 响应数据 (Response)
 
@@ -70,26 +103,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getDocuments",
-  "data": { "collection": "users" }
+  "action": "createDocument",
+  "data": {}
 }
 ```
 
 ---
 
-## 4. 创建文档 [POST]
+## 4. 更新文档 [POST]
 
-**接口描述**：在指定集合中创建文档。
+**接口描述**：更新指定集合中的文档。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `createDocument` |
+| **动作类型 (Action)** | `updateDocument` |
 
 ### 4.1 请求参数 (Parameters)
 
-见通用约定（含 collection、文档字段等）。
+见通用约定。
 
 ### 4.2 响应数据 (Response)
 
@@ -103,22 +136,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "createDocument",
+  "action": "updateDocument",
   "data": {}
 }
 ```
 
 ---
 
-## 5. 更新文档 [POST]
+## 5. 删除文档 [POST]
 
-**接口描述**：更新指定集合中的文档。
+**接口描述**：删除指定集合中的文档。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `updateDocument` |
+| **动作类型 (Action)** | `deleteDocument` |
 
 ### 5.1 请求参数 (Parameters)
 
@@ -136,22 +169,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "updateDocument",
+  "action": "deleteDocument",
   "data": {}
 }
 ```
 
 ---
 
-## 6. 删除文档 [POST]
+## 6. 去重 [POST]
 
-**接口描述**：删除指定集合中的文档。
+**接口描述**：按条件对集合内数据去重。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `deleteDocument` |
+| **动作类型 (Action)** | `deduplicate` |
 
 ### 6.1 请求参数 (Parameters)
 
@@ -169,22 +202,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "deleteDocument",
+  "action": "deduplicate",
   "data": {}
 }
 ```
 
 ---
 
-## 7. 去重 [POST]
+## 7. 压缩/整理 [POST]
 
-**接口描述**：按条件对集合内数据去重。
+**接口描述**：按业务定义执行压缩或整理操作。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `deduplicate` |
+| **动作类型 (Action)** | `compact` |
 
 ### 7.1 请求参数 (Parameters)
 
@@ -202,26 +235,30 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "deduplicate",
+  "action": "compact",
   "data": {}
 }
 ```
 
 ---
 
-## 8. 压缩/整理 [POST]
+### 7.5 二、日志
 
-**接口描述**：按业务定义执行压缩或整理操作。
+---
+
+## 8. 获取管理员操作日志 [GET]
+
+**接口描述**：分页、筛选获取管理员操作日志。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `compact` |
+| **动作类型 (Action)** | `getLogs` |
 
 ### 8.1 请求参数 (Parameters)
 
-见通用约定。
+见通用约定（分页、时间、操作类型等）。
 
 ### 8.2 响应数据 (Response)
 
@@ -235,30 +272,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "compact",
+  "action": "getLogs",
   "data": {}
 }
 ```
 
 ---
 
-### 8.5 二、日志
+## 9. 单条日志详情 [GET]
 
----
-
-## 9. 获取管理员操作日志 [GET]
-
-**接口描述**：分页、筛选获取管理员操作日志。
+**接口描述**：获取单条日志详情。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getLogs` |
+| **动作类型 (Action)** | `getLogDetail` |
 
 ### 9.1 请求参数 (Parameters)
 
-见通用约定（分页、时间、操作类型等）。
+见通用约定（含 logId）。
 
 ### 9.2 响应数据 (Response)
 
@@ -272,26 +305,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getLogs",
+  "action": "getLogDetail",
   "data": {}
 }
 ```
 
 ---
 
-## 10. 单条日志详情 [GET]
+## 10. 日志统计 [GET]
 
-**接口描述**：获取单条日志详情。
+**接口描述**：获取日志统计信息。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getLogDetail` |
+| **动作类型 (Action)** | `getLogStats` |
 
 ### 10.1 请求参数 (Parameters)
 
-见通用约定（含 logId）。
+见通用约定。
 
 ### 10.2 响应数据 (Response)
 
@@ -305,22 +338,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getLogDetail",
+  "action": "getLogStats",
   "data": {}
 }
 ```
 
 ---
 
-## 11. 日志统计 [GET]
+## 11. 导出日志 [GET]
 
-**接口描述**：获取日志统计信息。
+**接口描述**：导出日志数据。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getLogStats` |
+| **动作类型 (Action)** | `getLogsExport` |
 
 ### 11.1 请求参数 (Parameters)
 
@@ -338,26 +371,32 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getLogStats",
+  "action": "getLogsExport",
   "data": {}
 }
 ```
 
 ---
 
-## 12. 导出日志 [GET]
+### 11.5 三、配置
 
-**接口描述**：导出日志数据。
+---
+
+## 12. 获取单条系统配置 [GET]
+
+**接口描述**：根据 key 获取单条系统配置。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getLogsExport` |
+| **动作类型 (Action)** | `getConfig` |
 
 ### 12.1 请求参数 (Parameters)
 
-见通用约定。
+| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| key | String | 是 | - | 配置键 | “site_name” |
 
 ### 12.2 响应数据 (Response)
 
@@ -371,32 +410,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getLogsExport",
-  "data": {}
+  "action": "getConfig",
+  "data": { "key": "site_name" }
 }
 ```
 
 ---
 
-### 12.5 三、配置
+## 13. 获取全部配置 [GET]
 
----
-
-## 13. 获取单条系统配置 [GET]
-
-**接口描述**：根据 key 获取单条系统配置。
+**接口描述**：获取全部系统配置。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getConfig` |
+| **动作类型 (Action)** | `getAllConfigs` |
 
 ### 13.1 请求参数 (Parameters)
 
-| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| key | String | 是 | - | 配置键 | “site_name” |
+无。
 
 ### 13.2 响应数据 (Response)
 
@@ -410,26 +443,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getConfig",
-  "data": { "key": "site_name" }
+  "action": "getAllConfigs",
+  "data": {}
 }
 ```
 
 ---
 
-## 14. 获取全部配置 [GET]
+## 14. 设置配置 [POST]
 
-**接口描述**：获取全部系统配置。
+**接口描述**：设置系统配置，需管理员权限。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getAllConfigs` |
+| **动作类型 (Action)** | `setConfig` |
 
 ### 14.1 请求参数 (Parameters)
 
-无。
+见通用约定（含 key、value 等）。
 
 ### 14.2 响应数据 (Response)
 
@@ -443,26 +476,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getAllConfigs",
+  "action": "setConfig",
   "data": {}
 }
 ```
 
 ---
 
-## 15. 设置配置 [POST]
+## 15. 初始化 system_config [POST]
 
-**接口描述**：设置系统配置，需管理员权限。
+**接口描述**：首次部署时初始化 system_config 集合。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `setConfig` |
+| **动作类型 (Action)** | `initConfig` |
 
 ### 15.1 请求参数 (Parameters)
 
-见通用约定（含 key、value 等）。
+见通用约定。
 
 ### 15.2 响应数据 (Response)
 
@@ -476,22 +509,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "setConfig",
+  "action": "initConfig",
   "data": {}
 }
 ```
 
 ---
 
-## 16. 初始化 system_config [POST]
+## 16. 清除配置缓存 [POST]
 
-**接口描述**：首次部署时初始化 system_config 集合。
+**接口描述**：清除配置缓存。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `initConfig` |
+| **动作类型 (Action)** | `clearConfigCache` |
 
 ### 16.1 请求参数 (Parameters)
 
@@ -509,26 +542,32 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "initConfig",
+  "action": "clearConfigCache",
   "data": {}
 }
 ```
 
 ---
 
-## 17. 清除配置缓存 [POST]
+### 16.5 四、经验与争议
 
-**接口描述**：清除配置缓存。
+---
+
+## 17. 获取指定用户经验/星级 [GET]
+
+**接口描述**：获取指定用户的经验值与星级。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `clearConfigCache` |
+| **动作类型 (Action)** | `getUserExperience` |
 
 ### 17.1 请求参数 (Parameters)
 
-见通用约定。
+| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| userId | String | 是 | - | 用户 ID | “U12345” |
 
 ### 17.2 响应数据 (Response)
 
@@ -542,32 +581,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "clearConfigCache",
-  "data": {}
+  "action": "getUserExperience",
+  "data": { "userId": "U12345" }
 }
 ```
 
 ---
 
-### 17.5 四、经验与争议
+## 18. 调整用户经验值 [POST]
 
----
-
-## 18. 获取指定用户经验/星级 [GET]
-
-**接口描述**：获取指定用户的经验值与星级。
+**接口描述**：管理员调整用户经验值。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getUserExperience` |
+| **动作类型 (Action)** | `adjustExperience` |
 
 ### 18.1 请求参数 (Parameters)
 
-| 参数名 | 类型 | 必选 | 默认值 | 描述 | 示例 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| userId | String | 是 | - | 用户 ID | “U12345” |
+见通用约定（含 userId、增减量、原因等）。
 
 ### 18.2 响应数据 (Response)
 
@@ -581,26 +614,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getUserExperience",
-  "data": { "userId": "U12345" }
+  "action": "adjustExperience",
+  "data": {}
 }
 ```
 
 ---
 
-## 19. 调整用户经验值 [POST]
+## 19. 获取经验值历史 [GET]
 
-**接口描述**：管理员调整用户经验值。
+**接口描述**：获取用户经验值变动历史。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `adjustExperience` |
+| **动作类型 (Action)** | `getExperienceHistory` |
 
 ### 19.1 请求参数 (Parameters)
 
-见通用约定（含 userId、增减量、原因等）。
+见通用约定（含 userId、分页等）。
 
 ### 19.2 响应数据 (Response)
 
@@ -614,26 +647,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "adjustExperience",
+  "action": "getExperienceHistory",
   "data": {}
 }
 ```
 
 ---
 
-## 20. 获取经验值历史 [GET]
+## 20. 作弊检测 [POST]
 
-**接口描述**：获取用户经验值变动历史。
+**接口描述**：执行作弊检测逻辑。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getExperienceHistory` |
+| **动作类型 (Action)** | `detectCheating` |
 
 ### 20.1 请求参数 (Parameters)
 
-见通用约定（含 userId、分页等）。
+见通用约定。
 
 ### 20.2 响应数据 (Response)
 
@@ -647,26 +680,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getExperienceHistory",
+  "action": "detectCheating",
   "data": {}
 }
 ```
 
 ---
 
-## 21. 作弊检测 [POST]
+## 21. 处理经验申诉 [POST]
 
-**接口描述**：执行作弊检测逻辑。
+**接口描述**：管理员处理用户经验申诉。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `detectCheating` |
+| **动作类型 (Action)** | `processAppeal` |
 
 ### 21.1 请求参数 (Parameters)
 
-见通用约定。
+见通用约定（含申诉 ID、通过/拒绝、备注等）。
 
 ### 21.2 响应数据 (Response)
 
@@ -680,26 +713,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "detectCheating",
+  "action": "processAppeal",
   "data": {}
 }
 ```
 
 ---
 
-## 22. 处理经验申诉 [POST]
+## 22. 获取争议列表 [GET]
 
-**接口描述**：管理员处理用户经验申诉。
+**接口描述**：获取争议列表，支持筛选、分页。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `processAppeal` |
+| **动作类型 (Action)** | `getDisputeList` |
 
 ### 22.1 请求参数 (Parameters)
 
-见通用约定（含申诉 ID、通过/拒绝、备注等）。
+见通用约定。
 
 ### 22.2 响应数据 (Response)
 
@@ -713,26 +746,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "processAppeal",
+  "action": "getDisputeList",
   "data": {}
 }
 ```
 
 ---
 
-## 23. 获取争议列表 [GET]
+## 23. 争议详情 [GET]
 
-**接口描述**：获取争议列表，支持筛选、分页。
+**接口描述**：获取单条争议详情。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getDisputeList` |
+| **动作类型 (Action)** | `getDisputeDetail` |
 
 ### 23.1 请求参数 (Parameters)
 
-见通用约定。
+见通用约定（含 disputeId）。
 
 ### 23.2 响应数据 (Response)
 
@@ -746,26 +779,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getDisputeList",
+  "action": "getDisputeDetail",
   "data": {}
 }
 ```
 
 ---
 
-## 24. 争议详情 [GET]
+## 24. 处理争议 [POST]
 
-**接口描述**：获取单条争议详情。
+**接口描述**：管理员处理争议（裁决等）。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getDisputeDetail` |
+| **动作类型 (Action)** | `resolveDispute` |
 
 ### 24.1 请求参数 (Parameters)
 
-见通用约定（含 disputeId）。
+见通用约定。
 
 ### 24.2 响应数据 (Response)
 
@@ -779,22 +812,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getDisputeDetail",
+  "action": "resolveDispute",
   "data": {}
 }
 ```
 
 ---
 
-## 25. 处理争议 [POST]
+## 25. 关闭争议 [POST]
 
-**接口描述**：管理员处理争议（裁决等）。
+**接口描述**：关闭争议单。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `resolveDispute` |
+| **动作类型 (Action)** | `closeDispute` |
 
 ### 25.1 请求参数 (Parameters)
 
@@ -812,22 +845,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "resolveDispute",
+  "action": "closeDispute",
   "data": {}
 }
 ```
 
 ---
 
-## 26. 关闭争议 [POST]
+### 25.5 五、测试
 
-**接口描述**：关闭争议单。
+---
+
+## 26. 运行测试套件 [POST]
+
+**接口描述**：运行测试套件。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `closeDispute` |
+| **动作类型 (Action)** | `runTestSuite` |
 
 ### 26.1 请求参数 (Parameters)
 
@@ -845,30 +882,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "closeDispute",
+  "action": "runTestSuite",
   "data": {}
 }
 ```
 
 ---
 
-### 26.5 五、测试
+## 27. 运行单条测试 [POST]
 
----
-
-## 27. 运行测试套件 [POST]
-
-**接口描述**：运行测试套件。
+**接口描述**：运行单条测试用例。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `runTestSuite` |
+| **动作类型 (Action)** | `runSingleTest` |
 
 ### 27.1 请求参数 (Parameters)
 
-见通用约定。
+见通用约定（含 testId 等）。
 
 ### 27.2 响应数据 (Response)
 
@@ -882,26 +915,26 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "runTestSuite",
+  "action": "runSingleTest",
   "data": {}
 }
 ```
 
 ---
 
-## 28. 运行单条测试 [POST]
+## 28. 获取测试结果 [GET]
 
-**接口描述**：运行单条测试用例。
+**接口描述**：获取测试运行结果。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `runSingleTest` |
+| **动作类型 (Action)** | `getTestResults` |
 
 ### 28.1 请求参数 (Parameters)
 
-见通用约定（含 testId 等）。
+见通用约定。
 
 ### 28.2 响应数据 (Response)
 
@@ -915,22 +948,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "runSingleTest",
+  "action": "getTestResults",
   "data": {}
 }
 ```
 
 ---
 
-## 29. 获取测试结果 [GET]
+## 29. 清除测试结果 [POST]
 
-**接口描述**：获取测试运行结果。
+**接口描述**：清除测试结果数据。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `getTestResults` |
+| **动作类型 (Action)** | `clearTestResults` |
 
 ### 29.1 请求参数 (Parameters)
 
@@ -948,22 +981,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "getTestResults",
+  "action": "clearTestResults",
   "data": {}
 }
 ```
 
 ---
 
-## 30. 清除测试结果 [POST]
+## 30. 注入模拟数据 [POST]
 
-**接口描述**：清除测试结果数据。
+**接口描述**：注入模拟数据，用于测试。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `clearTestResults` |
+| **动作类型 (Action)** | `injectMockData` |
 
 ### 30.1 请求参数 (Parameters)
 
@@ -981,22 +1014,22 @@ sidebar_label: 管理员
 
 ```json
 {
-  "action": "clearTestResults",
+  "action": "injectMockData",
   "data": {}
 }
 ```
 
 ---
 
-## 31. 注入模拟数据 [POST]
+## 31. 清除测试数据 [POST]
 
-**接口描述**：注入模拟数据，用于测试。
+**接口描述**：清除测试注入的数据。
 
 | 项目 | 说明 |
 | :--- | :--- |
 | **云函数名** | `admin` |
 | **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `injectMockData` |
+| **动作类型 (Action)** | `clearTestData` |
 
 ### 31.1 请求参数 (Parameters)
 
@@ -1011,39 +1044,6 @@ sidebar_label: 管理员
 见 [通用报错码](common-error-codes.md)。无管理员权限为 RH00004，配置相关为 RH00702。
 
 ### 31.4 示例 (Examples)
-
-```json
-{
-  "action": "injectMockData",
-  "data": {}
-}
-```
-
----
-
-## 32. 清除测试数据 [POST]
-
-**接口描述**：清除测试注入的数据。
-
-| 项目 | 说明 |
-| :--- | :--- |
-| **云函数名** | `admin` |
-| **HTTP 路由** | 不适用 |
-| **动作类型 (Action)** | `clearTestData` |
-
-### 32.1 请求参数 (Parameters)
-
-见通用约定。
-
-### 32.2 响应数据 (Response)
-
-见通用约定。
-
-### 32.3 错误码 (Error Codes)
-
-见 [通用报错码](common-error-codes.md)。无管理员权限为 RH00004，配置相关为 RH00702。
-
-### 32.4 示例 (Examples)
 
 ```json
 {

@@ -20,7 +20,10 @@
     cursor: pointer;
     color: var(--ifm-font-color-base);
     line-height: 0;
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    transition:
+      border-color 0.15s,
+      color 0.15s,
+      background 0.15s;
   }
 
   .toggle:hover {
@@ -30,11 +33,11 @@
   }
 }
 
-[data-theme='dark'] .toggle {
+[data-theme="dark"] .toggle {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-[data-theme='dark'] .toggle:hover {
+[data-theme="dark"] .toggle:hover {
   border-color: var(--ifm-color-primary);
   background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
 }

@@ -198,7 +198,7 @@ sidebar_label: API 文档规范
 
 ```json
 {
-  "action": "actionName",
-  "data": {}
+  “action”: “actionName”,
+  “data”: {}
 }
 ```

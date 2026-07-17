@@ -11,17 +11,17 @@
  * 用法: node scripts/format-markdown.mjs [--check]
  * --check: 若有文件需要格式化则退出码 1，不写回
  */
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(__dirname, "..");
 
-const roots = ['docs', 'legal', 'legal_versioned_docs', 'api_docs'];
+const roots = ["docs", "legal", "legal_versioned_docs", "api_docs"];
 
-const LDQM = '\u201c'; // "
-const RDQM = '\u201d'; // "
+const LDQM = "\u201c"; // "
+const RDQM = "\u201d"; // "
 
 /** ①–⑳ */
 const RE_CIRCLED_DIGIT = /[\u2460-\u2473]/;
@@ -33,12 +33,12 @@ function splitFrontMatter(text) {
   if (m) {
     return { front: m[0], body: text.slice(m[0].length) };
   }
-  return { front: '', body: text };
+  return { front: "", body: text };
 }
 
 function isFenceStart(line) {
   const t = line.trim();
-  return t.startsWith('```') || t.startsWith('~~~');
+  return t.startsWith("```") || t.startsWith("~~~");
 }
 
 /** Mask `inline code` segments; returns { line, tokens: string[] } */
@@ -52,13 +52,14 @@ function maskInlineCode(line) {
 }
 
 function unmaskInlineCode(line, tokens) {
-  return line.replace(/\x00C(\d+)\x00/g, (_, i) => tokens[Number(i)] ?? '');
+  // oxlint-disable-next-line eslint/no-control-regex -- intentional sentinel for inline-code masking
+  return line.replace(/\x00C(\d+)\x00/g, (_, i) => tokens[Number(i)] ?? "");
 }
 
 /** ASCII " → “” 交替；不处理已存在的弯引号配对 */
 function convertAsciiDoubleQuotesMasked(maskedLine) {
   let depth = 0;
-  let out = '';
+  let out = "";
   for (let i = 0; i < maskedLine.length; i++) {
     const c = maskedLine[i];
     if (c === '"') {
@@ -79,13 +80,13 @@ function insertCjkLatinSpacing(line) {
     return line;
   }
   let s = line;
-  s = s.replace(/([\u4e00-\u9fff])([A-Za-z]{2,})/g, '$1 $2');
-  s = s.replace(/([A-Za-z]{2,})([\u4e00-\u9fff])/g, '$1 $2');
+  s = s.replace(/([\u4e00-\u9fff])([A-Za-z]{2,})/g, "$1 $2");
+  s = s.replace(/([A-Za-z]{2,})([\u4e00-\u9fff])/g, "$1 $2");
   return s;
 }
 
 function stripTrailingWhitespace(line) {
-  return line.replace(/[ \t]+$/u, '');
+  return line.replace(/[ \t]+$/u, "");
 }
 
 /**
@@ -126,7 +127,7 @@ function formatHeadingLine(line, state, skipNumbering) {
     if (!skipNumbering) {
       state.h2 += 1;
       state.h3 = 0;
-      const title = h2[2].replace(/^\d+\.\s*/, '').trim();
+      const title = h2[2].replace(/^\d+\.\s*/, "").trim();
       return `## ${state.h2}. ${title}`;
     }
     return `## ${h2[2].trim()}`;
@@ -139,7 +140,7 @@ function formatHeadingLine(line, state, skipNumbering) {
         state.h2 = 1;
       }
       state.h3 += 1;
-      const title = h3[2].replace(/^\d+\.\d+\s+/, '').trim();
+      const title = h3[2].replace(/^\d+\.\d+\s+/, "").trim();
       return `### ${state.h2}.${state.h3} ${title}`;
     }
     return `### ${h3[2].trim()}`;
@@ -147,7 +148,7 @@ function formatHeadingLine(line, state, skipNumbering) {
 
   const h4 = line.match(/^(####)\s+(.*)$/);
   if (h4 && !skipNumbering) {
-    const title = h4[2].replace(/^(\d+\.)+\d+\s+/, '').trim();
+    const title = h4[2].replace(/^(\d+\.)+\d+\s+/, "").trim();
     return `#### ${title}`;
   }
 
@@ -156,10 +157,10 @@ function formatHeadingLine(line, state, skipNumbering) {
 
 function hasDividerAbove(lines, startIdx) {
   let j = startIdx - 1;
-  while (j >= 0 && lines[j] === '') {
+  while (j >= 0 && lines[j] === "") {
     j--;
   }
-  return j >= 0 && lines[j] === '---';
+  return j >= 0 && lines[j] === "---";
 }
 
 /** 在第二个及以后的 ## 前插入 ---（与正文 front matter 的 --- 无关） */
@@ -170,12 +171,12 @@ function ensureH2Dividers(lines) {
     const line = lines[i];
     if (/^##(\s|$)/.test(line)) {
       if (seenH2 && !hasDividerAbove(out, out.length)) {
-        while (out.length > 0 && out[out.length - 1] === '') {
+        while (out.length > 0 && out[out.length - 1] === "") {
           out.pop();
         }
-        out.push('');
-        out.push('---');
-        out.push('');
+        out.push("");
+        out.push("---");
+        out.push("");
       }
       seenH2 = true;
     }
@@ -198,10 +199,10 @@ function collapseBlankLinesFenceAware(lines) {
       continue;
     }
 
-    if (!inFence && line === '') {
+    if (!inFence && line === "") {
       blankRun++;
       if (blankRun <= 2) {
-        out.push('');
+        out.push("");
       }
       continue;
     }
@@ -214,7 +215,7 @@ function collapseBlankLinesFenceAware(lines) {
 }
 
 function processBody(body, skipHeadingNumbering) {
-  const rawLines = body.replace(/\r\n/g, '\n').split('\n');
+  const rawLines = body.replace(/\r\n/g, "\n").split("\n");
   const state = { h2: 0, h3: 0 };
   const circledCtx = { h2: 0, h3: 0, circledSeq: 0 };
   const out = [];
@@ -250,22 +251,22 @@ function processBody(body, skipHeadingNumbering) {
   let withDividers = ensureH2Dividers(out);
   withDividers = collapseBlankLinesFenceAware(withDividers);
 
-  let text = withDividers.join('\n');
-  if (!text.endsWith('\n')) {
-    text += '\n';
+  let text = withDividers.join("\n");
+  if (!text.endsWith("\n")) {
+    text += "\n";
   }
   return text;
 }
 
 function processFile(filePath, checkOnly) {
-  const raw = fs.readFileSync(filePath, 'utf8');
+  const raw = fs.readFileSync(filePath, "utf8");
   const { front, body } = splitFrontMatter(raw);
-  const skipHeadingNumbering = path.basename(filePath) === 'index.md';
+  const skipHeadingNumbering = path.basename(filePath) === "index.md";
   const newBody = processBody(body, skipHeadingNumbering);
   const next = front + newBody;
   if (next !== raw) {
     if (!checkOnly) {
-      fs.writeFileSync(filePath, next, 'utf8');
+      fs.writeFileSync(filePath, next, "utf8");
     }
     return true;
   }
@@ -278,13 +279,13 @@ function walk(dir, acc) {
     const st = fs.statSync(p);
     if (st.isDirectory()) {
       walk(p, acc);
-    } else if (name.endsWith('.md')) {
+    } else if (name.endsWith(".md")) {
       acc.push(p);
     }
   }
 }
 
-const checkOnly = process.argv.includes('--check');
+const checkOnly = process.argv.includes("--check");
 const files = [];
 for (const r of roots) {
   const d = path.join(repoRoot, r);
@@ -294,15 +295,15 @@ for (const r of roots) {
 }
 
 let changed = 0;
-for (const f of files.sort()) {
+for (const f of files.sort((a, b) => a.localeCompare(b))) {
   if (processFile(f, checkOnly)) {
     changed++;
-    console.log(checkOnly ? 'needs format:' : 'updated:', path.relative(repoRoot, f));
+    console.log(checkOnly ? "needs format:" : "updated:", path.relative(repoRoot, f));
   }
 }
 
 console.log(
-  `${checkOnly ? 'check' : 'done'}. ${changed} file(s) ${checkOnly ? 'would change' : 'modified'}, ${files.length} total.`,
+  `${checkOnly ? "check" : "done"}. ${changed} file(s) ${checkOnly ? "would change" : "modified"}, ${files.length} total.`,
 );
 
 if (checkOnly && changed > 0) {
